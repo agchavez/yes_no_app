@@ -1,4 +1,5 @@
 import 'package:app_yes_no/presentation/widgets/chat/my_menssage_bubble.dart';
+import 'package:app_yes_no/presentation/widgets/shared/menssage_field_box.dart';
 import 'package:flutter/material.dart';
 
 class ChatScreen extends StatelessWidget {
@@ -49,6 +50,7 @@ class ChatScreen extends StatelessWidget {
                 );
               },
             )),
+            const MenssageFielBox()
           ],
         ),
       ),
