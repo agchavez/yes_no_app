@@ -20,11 +20,18 @@ class _CounterScreenState extends State<CounterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Padding(
+          padding: EdgeInsets.all(4.0),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://resources.premierleague.com/premierleague/photos/players/250x250/p14937.png'),
+          ),
+        ),
         title: const Center(
           child: Text(
             'Gabriel Chavez',
             style: TextStyle(
-              fontSize: 30,
+              fontSize: 20,
             ),
           ),
         ),
@@ -32,22 +39,39 @@ class _CounterScreenState extends State<CounterScreen> {
           IconButton(
             color: Colors.blue,
             onPressed: _resetCounter,
-            icon: const Icon(Icons.refresh_outlined),
+            icon: const Icon(Icons.call),
           ),
         ],
       ),
-      body: Center(
+      body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const Text(
-              'Contador de veces que se ha presionado el botón:',
-            ),
+            Expanded(
+                child: Container(
+              child: Column(children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text('Hola gabriel chavez'),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text('Hola gabriel chavez'),
+                    ],
+                  ),
+                ),
+              ]),
+            )),
             Text(
-              '$_count',
-              style: const TextStyle(
-                fontSize: 80,
-              ),
+              'Aqui va el contador: $_count',
             ),
           ],
         ),

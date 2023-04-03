@@ -1,3 +1,4 @@
+import 'package:app_yes_no/config/theme/app_theme.dart';
 import 'package:app_yes_no/presentation/screens/counter_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,16 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Flutter',
+      theme: AppTheme.darkTheme,
       home: const CounterScreen(),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-        primarySwatch: Colors.blue,
-      ),
     );
   }
 }
