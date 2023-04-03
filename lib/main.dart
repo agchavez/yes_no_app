@@ -1,5 +1,5 @@
 import 'package:app_yes_no/config/theme/app_theme.dart';
-import 'package:app_yes_no/presentation/screens/counter_screen.dart';
+import 'package:app_yes_no/presentation/screens/chat/chat_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,8 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter',
-      theme: AppTheme.darkTheme,
-      home: const CounterScreen(),
+      theme: AppTheme.lightTheme,
+      home: const ChatScreen(),
     );
   }
 }

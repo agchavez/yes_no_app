@@ -48,27 +48,27 @@ class _CounterScreenState extends State<CounterScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Expanded(
-                child: Container(
-              child: Column(children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                child: ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: index % 2 == 0
+                        ? MainAxisAlignment.start
+                        : MainAxisAlignment.end,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      Text('Hola gabriel chavez'),
+                      const Text('Hola gabriel chavez',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                          )),
                     ],
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Hola gabriel chavez'),
-                    ],
-                  ),
-                ),
-              ]),
+                );
+              },
             )),
             Text(
               'Aqui va el contador: $_count',
