@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-enum MessageType {
-  message,
-  image,
-}
+import '../../../domain/entities/menssage.dart';
 
 class MyMessageBubble extends StatelessWidget {
-  final bool isMe;
+  final FromWho isMe;
   final MessageType type; // La nueva propiedad de tipo MessageType
   final String message; // Cambia a una cadena de texto
   const MyMessageBubble({
@@ -21,15 +18,16 @@ class MyMessageBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
-        mainAxisAlignment:
-            isMe ? MainAxisAlignment.start : MainAxisAlignment.end,
+        mainAxisAlignment: isMe == FromWho.other
+            ? MainAxisAlignment.start
+            : MainAxisAlignment.end,
         children: [
           Container(
             constraints: BoxConstraints(
               maxWidth: MediaQuery.of(context).size.width * 0.6,
             ),
             decoration: BoxDecoration(
-              color: isMe ? Colors.blue : Colors.grey,
+              color: isMe == FromWho.other ? Colors.blue : Colors.grey,
               borderRadius: BorderRadius.circular(10),
             ),
             child: type == MessageType.image // Comprueba si es una imagen

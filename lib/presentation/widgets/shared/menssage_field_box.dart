@@ -4,6 +4,7 @@ class MenssageFielBox extends StatefulWidget {
   const MenssageFielBox({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MenssageFielBoxState createState() => _MenssageFielBoxState();
 }
 
@@ -27,8 +28,6 @@ class _MenssageFielBoxState extends State<MenssageFielBox> {
 
   void _handleSendPressed() {
     if (_isButtonEnabled) {
-      // Enviamos el mensaje o hacemos algo con el texto aquí
-      print(_textEditingController.text);
       // Limpiamos el campo de texto después de enviar el mensaje
       _textEditingController.clear();
       setState(() {
@@ -46,10 +45,10 @@ class _MenssageFielBoxState extends State<MenssageFielBox> {
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            width: MediaQuery.of(context).size.width * 0.9,
+            width: MediaQuery.of(context).size.width * 0.85,
             height: 50,
             decoration: BoxDecoration(
-              color: Colors.grey[100],
+              color: Colors.grey[400],
               borderRadius: BorderRadius.circular(30),
             ),
             child: TextField(
@@ -57,6 +56,7 @@ class _MenssageFielBoxState extends State<MenssageFielBox> {
               onChanged: _handleTextChanged,
               decoration: const InputDecoration(
                 border: InputBorder.none,
+                fillColor: Colors.white,
                 hintText: 'Escribe un mensaje',
               ),
             ),

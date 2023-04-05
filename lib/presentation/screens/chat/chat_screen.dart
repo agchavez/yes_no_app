@@ -1,12 +1,17 @@
+import 'package:app_yes_no/presentation/provider/chat_provider.dart';
 import 'package:app_yes_no/presentation/widgets/chat/my_menssage_bubble.dart';
 import 'package:app_yes_no/presentation/widgets/shared/menssage_field_box.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../domain/entities/menssage.dart';
 
 class ChatScreen extends StatelessWidget {
   const ChatScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final chatProvider = context.watch<ChatProvider>();
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
@@ -37,16 +42,13 @@ class ChatScreen extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
-              itemCount: 30,
+              itemCount: chatProvider.menssageList.length,
               itemBuilder: (context, index) {
+                final menssage = chatProvider.menssageList[index];
                 return MyMessageBubble(
-                  isMe: index % 2 == 0,
-                  type: index % 3 == 0
-                      ? MessageType.image
-                      : MessageType.message, // Cambia el tipo de mensaje
-                  message: index % 3 == 0 // Cambia el mensaje
-                      ? 'https://yesno.wtf/assets/yes/8-2f93962e2ab24427df8589131da01a4d.gif'
-                      : 'Hola, ¿Cómo estás?, ¿Qué tal el día?',
+                  isMe: menssage.from,
+                  type: menssage.type,
+                  message: menssage.text,
                 );
               },
             )),
