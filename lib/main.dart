@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter',
-        theme: AppTheme.darkTheme,
+        theme: AppTheme.lightTheme,
         home: const ChatScreen(),
       ),
     );

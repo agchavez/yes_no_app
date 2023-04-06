@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MenssageFielBox extends StatefulWidget {
-  const MenssageFielBox({super.key});
+  final ValueChanged<String> onValue;
+  const MenssageFielBox({
+    super.key,
+    required this.onValue,
+  });
 
   @override
   // ignore: library_private_types_in_public_api
@@ -29,11 +33,15 @@ class _MenssageFielBoxState extends State<MenssageFielBox> {
   void _handleSendPressed() {
     if (_isButtonEnabled) {
       // Limpiamos el campo de texto después de enviar el mensaje
+      widget.onValue(_textEditingController.text);
       _textEditingController.clear();
       setState(() {
         // Deshabilitamos el botón después de enviar el mensaje
         _isButtonEnabled = false;
       });
+
+      // Colocar el cursor en el campo de texto
+      FocusScope.of(context).requestFocus(FocusNode());
     }
   }
 
@@ -48,12 +56,13 @@ class _MenssageFielBoxState extends State<MenssageFielBox> {
             width: MediaQuery.of(context).size.width * 0.85,
             height: 50,
             decoration: BoxDecoration(
-              color: Colors.grey[400],
+              color: Colors.grey[200],
               borderRadius: BorderRadius.circular(30),
             ),
             child: TextField(
               controller: _textEditingController,
               onChanged: _handleTextChanged,
+              onSubmitted: (_) => _handleSendPressed(),
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 fillColor: Colors.white,
@@ -63,7 +72,7 @@ class _MenssageFielBoxState extends State<MenssageFielBox> {
           ),
           IconButton(
             icon: const Icon(
-              Icons.send,
+              Icons.send_rounded,
               size: 30,
               color: Colors.blue,
             ),

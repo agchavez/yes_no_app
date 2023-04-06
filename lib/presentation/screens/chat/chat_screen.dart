@@ -42,17 +42,22 @@ class ChatScreen extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
+              controller: chatProvider.scrollController,
               itemCount: chatProvider.menssageList.length,
               itemBuilder: (context, index) {
                 final menssage = chatProvider.menssageList[index];
                 return MyMessageBubble(
-                  isMe: menssage.from,
-                  type: menssage.type,
-                  message: menssage.text,
+                  menssage: menssage,
                 );
               },
             )),
-            const MenssageFielBox()
+            MenssageFielBox(
+              onValue: (value) => chatProvider.addMenssage(Menssage(
+                text: value,
+                type: MessageType.message,
+                from: FromWho.me,
+              )),
+            ),
           ],
         ),
       ),

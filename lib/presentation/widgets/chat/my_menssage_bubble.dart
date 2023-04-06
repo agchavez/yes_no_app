@@ -3,14 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../domain/entities/menssage.dart';
 
 class MyMessageBubble extends StatelessWidget {
-  final FromWho isMe;
-  final MessageType type; // La nueva propiedad de tipo MessageType
-  final String message; // Cambia a una cadena de texto
+  final Menssage menssage;
   const MyMessageBubble({
     Key? key,
-    required this.isMe,
-    required this.type,
-    required this.message,
+    required this.menssage,
   }) : super(key: key);
 
   @override
@@ -18,7 +14,7 @@ class MyMessageBubble extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
-        mainAxisAlignment: isMe == FromWho.other
+        mainAxisAlignment: menssage.from == FromWho.other
             ? MainAxisAlignment.start
             : MainAxisAlignment.end,
         children: [
@@ -27,21 +23,22 @@ class MyMessageBubble extends StatelessWidget {
               maxWidth: MediaQuery.of(context).size.width * 0.6,
             ),
             decoration: BoxDecoration(
-              color: isMe == FromWho.other ? Colors.blue : Colors.grey,
+              color: menssage.from == FromWho.other ? Colors.blue : Colors.grey,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: type == MessageType.image // Comprueba si es una imagen
-                ? _ImageChat(message: message)
-                : Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      message,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+            child:
+                menssage.type == MessageType.image // Comprueba si es una imagen
+                    ? _ImageChat(message: menssage.text)
+                    : Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          menssage.text,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
           ),
         ],
       ),
